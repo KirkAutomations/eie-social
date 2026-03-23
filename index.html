@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Efficiency Is Everything — Social Media Image Pack</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    font-family: 'Inter', sans-serif; 
+    background: #0d1117; 
+    color: #f0f0f0; 
+    padding: 40px 20px;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .header h1 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #f97316;
+    margin-bottom: 10px;
+  }
+  .header p {
+    font-size: 18px;
+    color: #9ca3af;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .section {
+    max-width: 1400px;
+    margin: 0 auto 60px;
+  }
+  .section h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f97316;
+    margin-bottom: 8px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #1e2530;
+  }
+  .section .desc {
+    font-size: 14px;
+    color: #9ca3af;
+    margin-bottom: 20px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .grid.tall {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+  .card {
+    background: #161b22;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #21262d;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: #f97316;
+  }
+  .card img {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+  }
+  .card .info {
+    padding: 12px 16px;
+  }
+  .card .info .name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #f0f0f0;
+    margin-bottom: 4px;
+  }
+  .card .info .meta {
+    font-size: 12px;
+    color: #9ca3af;
+  }
+  .card .info .dl {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #f97316;
+    text-decoration: none;
+    border: 1px solid #f97316;
+    padding: 4px 12px;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  .card .info .dl:hover {
+    background: #f97316;
+    color: #0d1117;
+  }
+  .download-all {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0d1117;
+    background: #f97316;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    transition: opacity 0.2s;
+  }
+  .download-all:hover { opacity: 0.85; }
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid #1e2530;
+    color: #9ca3af;
+    font-size: 14px;
+  }
+  footer a { color: #f97316; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⚡ EIE Social Media Pack</h1>
+  <p>33 ready-to-post images for Instagram, Facebook, X, LinkedIn, TikTok, and Pinterest. Click any image to preview full-size, or download individually.</p>
+</div>
+
+<div class="section">
+  <h2>📊 Stat Cards</h2>
+  <div class="desc">Bold single-stat images. High share potential — pure shock value numbers.</div>
+  <div class="grid" id="stat-cards"></div>
+</div>
+
+<div class="section">
+  <h2>❌ Myth Busters</h2>
+  <div class="desc">Contrarian data-backed takedowns. Triggers debate = algorithmic gold.</div>
+  <div class="grid" id="myth-busters"></div>
+</div>
+
+<div class="section">
+  <h2>🥬 Nutrition Per Dollar Carousel</h2>
+  <div class="desc">10-slide Instagram carousel. Top 8 most nutritious foods per dollar + hook + CTA.</div>
+  <div class="grid tall" id="nutrition-carousel"></div>
+</div>
+
+<div class="section">
+  <h2>⚡ Power Dynamic Carousel</h2>
+  <div class="desc">5-slide carousel on power dynamics — instant to hours-level upgrades.</div>
+  <div class="grid tall" id="power-carousel"></div>
+</div>
+
+<div class="section">
+  <h2>⚖️ Comparison Posts</h2>
+  <div class="desc">Side-by-side visuals. Extremely shareable and saveable.</div>
+  <div class="grid" id="comparisons"></div>
+</div>
+
+<div class="section">
+  <h2>💬 Quote Cards</h2>
+  <div class="desc">Philosophy + brand voice. Builds personality and shareability.</div>
+  <div class="grid" id="quotes"></div>
+</div>
+
+<div class="section">
+  <h2>🎬 Reel / Story Thumbnails</h2>
+  <div class="desc">Vertical 9:16 covers for Reels, TikTok, and Stories.</div>
+  <div class="grid tall" id="thumbnails"></div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<footer>
+  Built for <a href="https://efficiencyiseverything.com" target="_blank">Efficiency Is Everything</a> — Industrial Engineering Applied to Life
+</footer>
+
+<script>
+const images = {
+  'stat-cards': [
+    { file: '01-150-per-day.png', name: '$1.50/Day Stat Card', size: '1080×1080' },
+    { file: '02-12-hours-sleep.png', name: '12 Hours/Week — Biphasic Sleep', size: '1080×1080' },
+    { file: '03-2000-hours.png', name: '2,000 Hours Saved', size: '1080×1080' },
+    { file: '04-shoes-vacation-days.png', name: '15 Vacation Days Lost to Shoes', size: '1080×1350' },
+  ],
+  'myth-busters': [
+    { file: '05-fresh-vs-fast-food.png', name: 'Fresh vs Fast Food', size: '1080×1080' },
+    { file: '06-frozen-food-rank-19.png', name: 'Frozen Food Ranks #19', size: '1080×1350' },
+    { file: '07-mcdouble-myth.png', name: 'McDouble Myth — WRONG', size: '1080×1080' },
+  ],
+  'nutrition-carousel': [
+    { file: '08-carousel-nutrition-hook.png', name: 'Slide 1 — Hook', size: '1080×1350' },
+    { file: '09-carousel-food-02-kale.png', name: 'Slide 2 — Kale #1', size: '1080×1350' },
+    { file: '09-carousel-food-03-eggs.png', name: 'Slide 3 — Eggs #2', size: '1080×1350' },
+    { file: '09-carousel-food-04-carrots.png', name: 'Slide 4 — Carrots #3', size: '1080×1350' },
+    { file: '09-carousel-food-05-milk.png', name: 'Slide 5 — Milk #4', size: '1080×1350' },
+    { file: '09-carousel-food-06-spinach.png', name: 'Slide 6 — Spinach #5', size: '1080×1350' },
+    { file: '09-carousel-food-07-potatoes.png', name: 'Slide 7 — Potatoes #6', size: '1080×1350' },
+    { file: '09-carousel-food-08-romaine.png', name: 'Slide 8 — Romaine #7', size: '1080×1350' },
+    { file: '09-carousel-food-09-beans.png', name: 'Slide 9 — Beans #8', size: '1080×1350' },
+    { file: '10-carousel-nutrition-cta.png', name: 'Slide 10 — CTA', size: '1080×1350' },
+  ],
+  'power-carousel': [
+    { file: '11-power-carousel-hook.png', name: 'Slide 1 — Hook', size: '1080×1350' },
+    { file: '12-power-slide-2.png', name: 'Slide 2 — Instant', size: '1080×1350' },
+    { file: '13-power-slide-3.png', name: 'Slide 3 — 5 Minutes', size: '1080×1350' },
+    { file: '14-power-slide-4.png', name: 'Slide 4 — Hours', size: '1080×1350' },
+    { file: '15-power-slide-5.png', name: 'Slide 5 — The Rule', size: '1080×1350' },
+  ],
+  'comparisons': [
+    { file: '16-spaghetti-hook.png', name: 'Spaghetti Diagram — Morning Audit', size: '1080×1080' },
+    { file: '17-slipons-vs-tied.png', name: 'Slip-Ons vs Tied Shoes', size: '1080×1080' },
+    { file: '18-1000-vs-5000.png', name: '$1,000 vs $5,000 — Same Nutrition', size: '1080×1080' },
+    { file: '19-pareto-hair.png', name: '7 Min vs 30 Min — Pareto Hair', size: '1080×1080' },
+  ],
+  'quotes': [
+    { file: '20-rolling-rock-quote.png', name: 'Rolling Rock — Pleasure Per Dollar', size: '1080×1080' },
+    { file: '21-hobbes-quote.png', name: 'Hobbes Power Quote', size: '1080×1080' },
+    { file: '22-pragmatist-creed.png', name: 'The Pragmatist Sacred Creed', size: '1080×1080' },
+  ],
+  'thumbnails': [
+    { file: '23-thumb-shoes.png', name: "Haven't Tied Shoes In Years", size: '1080×1920' },
+    { file: '24-thumb-150-food.png', name: '$1.50/Day Food', size: '1080×1920' },
+    { file: '25-thumb-sleep.png', name: 'Sleep 6 Hours, More Rested', size: '1080×1920' },
+    { file: '26-thumb-spaghetti.png', name: 'Draw Your Morning With a Crayon', size: '1080×1920' },
+  ],
+};
+
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('active');
+}
+
+Object.entries(images).forEach(([sectionId, items]) => {
+  const container = document.getElementById(sectionId);
+  items.forEach(item => {
+    container.innerHTML += `
+      <div class="card">
+        <img src="${item.file}" alt="${item.name}" onclick="openLightbox('${item.file}')" loading="lazy">
+        <div class="info">
+          <div class="name">${item.name}</div>
+          <div class="meta">${item.size}</div>
+          <a class="dl" href="${item.file}" download="${item.file}">⬇ Download</a>
+        </div>
+      </div>`;
+  });
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
+});
+</script>
+</body>
+</html>
